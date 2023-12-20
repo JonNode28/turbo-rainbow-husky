@@ -5,7 +5,8 @@
     "build": "turbo build --cache-dir=.turbo",
     "dev": "turbo dev",
     "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "deploy": "turbo deploy"
   },
   "devDependencies": {
     "@repo/eslint-config": "*",
