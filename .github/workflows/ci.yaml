@@ -42,8 +42,6 @@ jobs:
       - name: Release
         id: release
         run: |
-          export PULUMI_CONFIG_PASSPHRASE=
-          export PULUMI_STATE_S3_BUCKET="rainbow-husky-pulumi-state"
           yarn deploy --filter=auth-service
           AUTH_SERVICE_FUNCTION_NAME=$(pulumi stack output someRandomOutput)
           echo "auth-service-function-name=$AUTH_SERVICE_FUNCTION_NAME" >> "$GITHUB_OUTPUT"

@@ -19,6 +19,7 @@ program.command('deploy')
     console.log(`Deploying with config: ${JSON.stringify(config)}`)
     if(!process.env.BRANCH) throw new Error('Current branch is not specified')
     if(process.env.BRANCH !== 'main' && !process.env.PR_NUMBER) throw new Error('PR number is required to deploy non-prod envs')
+    console.log('Logging into pl')
     exec('pulumi login s3://rainbow-husky-pulumi-state')
     const stack = process.env.BRANCH === 'main' ? `prod-${config.name}-service` : `dev-${process.env.PR_NUMBER}-${config.name}-service`
     exec(`pulumi stack select ${stack} -c`)
