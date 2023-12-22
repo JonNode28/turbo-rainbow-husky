@@ -1,0 +1,20 @@
+{
+  "name": "@repo/service-deployment",
+  "private": true,
+  "packageManager": "yarn@3.7.0",
+  "scripts": {
+    "build": "tsc",
+    "try": "node ./dist/index.js deploy"
+  },
+  "main": "dist/index.js",
+  "bin": {
+    "deploy-service": "./dist/index.js"
+  },
+  "dependencies": {
+    "commander": "^11.1.0",
+    "shelljs": "^0.8.5"
+  },
+  "devDependencies": {
+    "@types/shelljs": "^0.8.15"
+  }
+}

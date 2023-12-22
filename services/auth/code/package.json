@@ -1,0 +1,7 @@
+{
+  "name": "auth-service-code",
+  "packageManager": "yarn@3.7.0",
+  "scripts": {
+    "build": "tsc"
+  }
+}

@@ -1,0 +1,16 @@
+{
+    "name": "auth-service-infra",
+    "main": "src/index.ts",
+    "scripts": {
+        "deploy": "deploy-service deploy"
+    },
+    "devDependencies": {
+        "@types/node": "^18"
+    },
+    "dependencies": {
+        "@pulumi/aws": "^6.0.0",
+        "@pulumi/awsx": "^2.0.2",
+        "@pulumi/pulumi": "^3.0.0",
+        "@repo/service-deployment": "workspace:^"
+    }
+}
