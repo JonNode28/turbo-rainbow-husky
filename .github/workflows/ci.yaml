@@ -12,7 +12,7 @@ jobs:
     timeout-minutes: 15
     runs-on: ubuntu-latest
     outputs:
-      auth-service-function-name: ${{ steps.build.outputs.auth-service-function-name }}
+      auth-service-function-name: ${{ steps.release.outputs.auth-service-function-name }}
     steps:
       - name: Check out code
         uses: actions/checkout@v3
@@ -40,7 +40,9 @@ jobs:
         run: yarn
 
       - name: Release
+        id: release
         run: |
+          export PULUMI_CONFIG_PASSPHRASE=
           export PULUMI_STATE_S3_BUCKET="rainbow-husky-pulumi-state"
           yarn deploy --filter=auth-service
           AUTH_SERVICE_FUNCTION_NAME=$(pulumi stack output someRandomOutput)
