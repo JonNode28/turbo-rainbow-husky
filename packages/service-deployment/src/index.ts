@@ -15,17 +15,18 @@ program.command('deploy')
   .action(async (options) => {
     set('+e')
     exec('export')
+    let branch = process.env.GITHUB_HEAD_REF || process.env.GITHUB_REF_NAME
     if(process.env.CI !== 'true'){
-        process.env.GITHUB_HEAD_REF = exec('git rev-parse --abbrev-ref HEAD')
+        branch = exec('git rev-parse --abbrev-ref HEAD')
     }
     const configString = await fs.readFile(`./${options.config}`, 'utf-8')
       const config = JSON.parse(configString);
     console.log(`Deploying with config: ${JSON.stringify(config)}`)
-    if(!process.env.GITHUB_HEAD_REF) throw new Error('Current branch is not specified')
-    if(process.env.GITHUB_HEAD_REF !== 'main' && !process.env.PR_NUMBER) throw new Error('PR number is required to deploy non-prod envs')
+    if(!branch) throw new Error('Current branch is not specified')
+    if(branch !== 'main' && !process.env.PR_NUMBER) throw new Error('PR number is required to deploy non-prod envs')
     console.log('Logging into pl')
     exec('pulumi login s3://rainbow-husky-pulumi-state')
-    const stack = process.env.GITHUB_HEAD_REF === 'main' ? `prod-${config.name}-service` : `dev-${process.env.PR_NUMBER}-${config.name}-service`
+    const stack = branch === 'main' ? `prod-${config.name}-service` : `dev-${process.env.PR_NUMBER}-${config.name}-service`
     exec(`pulumi stack select ${stack} -c`)
     exec('pulumi up --yes')
   })
