@@ -42,7 +42,7 @@ jobs:
       - name: Release
         id: release
         run: |
-          yarn deploy --filter=auth-service
+          yarn deploy --filter=auth-service-infra
           AUTH_SERVICE_FUNCTION_NAME=$(pulumi stack output someRandomOutput)
           echo "auth-service-function-name=$AUTH_SERVICE_FUNCTION_NAME" >> "$GITHUB_OUTPUT"
 
