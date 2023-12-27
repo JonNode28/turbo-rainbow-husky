@@ -14,6 +14,7 @@ program.command('deploy')
   .option('--config', 'The path to the config file', 'service.config.json')
   .action(async (options) => {
     set('+e')
+    exec('export')
     if(process.env.CI !== 'true'){
         process.env.GITHUB_HEAD_REF = exec('git rev-parse --abbrev-ref HEAD')
     }
