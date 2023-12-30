@@ -30,6 +30,7 @@ program.command('deploy')
     const stack = branch === 'main' ? `prod-${config.name}-service` : `dev-${process.env.PR_NUMBER}-${config.name}-service`
     exec(`pulumi stack select ${stack} -c`)
     exec('pulumi up --yes')
+    console.log('Done')
   })
 
 program.parse()
