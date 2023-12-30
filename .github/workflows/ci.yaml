@@ -45,7 +45,7 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-region: us-east-2
+          aws-region: eu-west-1
           role-to-assume: arn:aws:iam::519396255280:role/IamOidcForGitHubActions-Role-tu5LpQXFDHm3
           role-session-name: AuthSession
 
@@ -95,7 +95,7 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-region: us-east-2
+          aws-region: eu-west-1
           role-to-assume: arn:aws:iam::519396255280:role/IamOidcForGitHubActions-Role-tu5LpQXFDHm3
           role-session-name: DocsSession
 
